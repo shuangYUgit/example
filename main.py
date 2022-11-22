@@ -5,3 +5,4 @@ version=0
 print("this is version_"+str(version))
 print(data[0:version])
 print('xiugai')
+print('study')
