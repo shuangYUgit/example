@@ -1,0 +1,105 @@
+Git-hub note
+
+Git帮助管理文件夹
+1） 进入需要管理的文件夹
+2）初始化
+3）管理文件+文件夹
+4）生成版本
+
+1. Git的初始命令
+cd location
+git init       初始化
+git status 检测当前文件夹的文件状态
+git add .  管理所有没有被管理的文件
+git commit -m “version0” 为当前版本添加描述信息
+如果对文件进行修改，修改后执行git status， 可以看到被修改的信息
+git add . 对所有没有被管理的再重新管理
+git commit -m “version1”  为修改后的版本添加描述信息
+git log 查看版本记录
+
+2. Git中的三大区域
+工作区：1）正在操作的文件夹，已经管理的文件2）已经修改的文件。 
+暂存区：工作区文件可以通过add 提交到暂存区，
+版本库： 如果暂存区可以生成版本，可以用commit生成版本库。
+
+工作区为了写代码，暂存区为了区分代码，最后决定要不要生成版本，还是不生成。
+
+
+ 3. 回到上一个或者上上个版本
+git reset --hard 版本号 
+
+4.重新回滚，另一种查看提交记录的方法
+git reflog
+git reset --hard 版本号 
+
+5.分支的概念
+分支只保存了改变的部分
+通过分支的概念，对线上代码进行紧急修复。创建分支，然后可以合并。如果合并，表示bug修复完成。
+专业名词 主干线叫master ， 主干线上的分支，称之为branch，branch可以自己命名。
+
+6.分支的代码实现
+git branch 显示目前所处在的分支
+git branch 分支名字1   创建新的名字的分支1，在主干线上
+git checkout 分支名    切换到对应的分支,在这里写代码，不影响主分支
+做出修改
+git add . 再次添加到暂存区
+git commit -m ‘版本名字’
+git log查看版本情况
+git checkout 分支名  切换回主分支查看 修改后版本内容看不见，因为回到了主分支
+git branch 新分支名字2。创建另一个分支，在主干线上
+git checkout 新分支名字2 切换到新的分支2上
+做出更改
+Git status 查看状态
+Git add .
+Git commit -m “新的版本名“
+
+
+7.分支代码合并到主干
+Git checkout main 回到主干
+Git merge 分支名2。     把分支2名字合并到主干
+查看git log
+Git branch -d bug删除不要的分支2
+Git checkout 分支1 回到分支1
+继续对分支1进行修改
+Git add .
+Git commit -m “版本名字a“
+合并分支1
+Git checkout main
+Get merge 分支1
+冲突问题如何解决，手动修复
+再重新add 命名新版本，
+
+
+8.github把代码上传到GitHub
+1）注册账号
+2）创建代码仓库，特定的project
+3）把本地代码推送到远程仓库
+4）gitlab开源的公司的代码仓库，协同的。公司的
+5）新建一个库，按照提示push所有的代码
+ 
+默认的只推送主要分支，main ，如果有分支，需要自己推送，git push -u origin dev
+
+9.更换电脑重新开发，需要把git上的代码再拉回来
+进入新的电脑，创建文件夹用于保存项目
+Git clone 找到代码的地址
+
+10.在新电脑中继续写代码
+新电脑需要用分支写，不能直接写到主代码上。所以要把主代码先合并到分支上，然后用分支写
+Git checkout 分支
+Git merge main
+在新电脑上开始了一个a1的功能
+Torch a1.py
+Git status
+把a1提交到远程仓库
+Git add .
+Git commit -m “在新电脑上开发的第一个代码a1”
+把新的代码推送到远程的GitHub
+git push origin dev
+回到旧电脑，然后进入dev之后，需要把GitHub上的代码再拉回来。但是这次不用git clone
+只需要在新电脑上更新
+Git pull origin dev
+实现两地开发
+
+
+
+
